@@ -18,7 +18,7 @@ Installation
 UnbalancedDataset is not currently available on the PyPi's reporitories, 
 however you can install it via `pip`:
 
-    pip install git+https://github.com/fmfn/UnbalancedDataset
+    ./pip install git+https://github.com/dmylnikov/UnbalancedDataset_df
 
 If you prefer, you can clone it and run the setup.py file. Use the following commands to get a 
 copy from Github and install all dependencies:
