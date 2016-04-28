@@ -2,7 +2,9 @@ from __future__ import print_function
 from __future__ import division
 import numpy as np
 from numpy.random import seed, randint
-from numpy import concatenate, asarray
+# from numpy import concatenate, asarray
+from numpy import asarray
+from pandas import concat as concatenate
 from random import betavariate
 from collections import Counter
 from .unbalanced_dataset import UnbalancedDataset
@@ -74,11 +76,11 @@ class OverSampler(UnbalancedDataset):
                 # Concatenate to the majority class
                 overx = concatenate((overx,
                                      self.x[self.y == key],
-                                     self.x[self.y == key][indx]), axis=0)
+                                     self.x[self.y == key].iloc[indx]), axis=0)
 
                 overy = concatenate((overy,
                                      self.y[self.y == key],
-                                     self.y[self.y == key][indx]), axis=0)
+                                     self.y[self.y == key].iloc[indx]), axis=0)
 
             elif (self.method == 'gaussian-perturbation'):
                 # Pick the index of the samples which will be modified
@@ -101,7 +103,7 @@ class OverSampler(UnbalancedDataset):
 
                 overy = concatenate((overy,
                                      self.y[self.y == key],
-                                     self.y[self.y == key][indx]), axis=0)
+                                     self.y[self.y == key].iloc[indx]), axis=0)
 
         if self.verbose:
             print("Over-sampling performed: " + str(Counter(overy)))

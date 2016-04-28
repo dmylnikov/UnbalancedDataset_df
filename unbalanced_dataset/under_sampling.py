@@ -3,7 +3,8 @@ from __future__ import division
 import numpy as np
 from numpy import logical_not, ones
 from numpy.random import seed, randint
-from numpy import concatenate
+# from numpy import concatenate
+from pandas import concat as concatenate
 from random import sample
 from collections import Counter
 from .unbalanced_dataset import UnbalancedDataset
@@ -70,8 +71,8 @@ class UnderSampler(UnbalancedDataset):
                 indx = sample(range((self.y == key).sum()), num_samples)
 
             # Concatenate to the minority class
-            underx = concatenate((underx, self.x[self.y == key][indx]), axis=0)
-            undery = concatenate((undery, self.y[self.y == key][indx]), axis=0)
+            underx = concatenate((underx, self.x[self.y == key].iloc[indx]), axis=0)
+            undery = concatenate((undery, self.y[self.y == key].iloc[indx]), axis=0)
 
         if self.verbose:
             print("Under-sampling performed: " + str(Counter(undery)))
